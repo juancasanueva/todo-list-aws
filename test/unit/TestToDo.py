@@ -111,7 +111,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(
             Exception,
             get_item(
-                "",
+                1,
                 self.dynamodb))
         print ('End: test_get_todo_error')
     
