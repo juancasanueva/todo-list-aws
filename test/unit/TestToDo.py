@@ -108,10 +108,11 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('---------------------')
         print ('Start: test_get_todo_error')
         from src.todoList import get_item
+        updated_text = "Aprender más cosas que DevOps y Cloud en la UNIR"
         self.assertRaises(
             Exception,
             get_item(
-                1,
+                updated_text,
                 self.dynamodb))
         print ('End: test_get_todo_error')
     
