@@ -6,5 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2022-12-23
 ### Added
-- Versión inicial de código.
+- Create todo: curl -X POST https://9r18bk9ir7.execute-api.us-east-1.amazonaws.com/Prod/todos --data '{ "text": "Learn Serverless" }'
+- List all todos: curl https://9r18bk9ir7.execute-api.us-east-1.amazonaws.com/Prod/todos
+- Get a todo: curl https://9r18bk9ir7.execute-api.us-east-1.amazonaws.com/Prod/todos/<id>
+- Update a todo: curl -X PUT https://9r18bk9ir7.execute-api.us-east-1.amazonaws.com/Prod/todos/<id> --data '{ "text": "Learn python and more", "checked": true }'
+- Delete a todo: curl -X DELETE https://9r18bk9ir7.execute-api.us-east-1.amazonaws.com/Prod/todos/<id>
+- 80% coverage in unit tests
 
