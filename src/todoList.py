@@ -159,7 +159,7 @@ def translate_item(key, source_language, target_language, dynamodb=None):
                 Text=item['text'],
                 SourceLanguageCode=source_language,
                 TargetLanguageCode=target_language)
-            item['text'] = translate_response['TranslatedText']    
+            item['text'] = translate_response['TranslatedText']
         except ClientError as e:
             print(e.response['Error']['Message'])
         else:

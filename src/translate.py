@@ -7,8 +7,8 @@ def translate(event, context):
     source_language = 'auto'  # AmazonComprehend autodetects source language
     target_language = event['pathParameters']['lang']
     item = todoList.translate_item(event['pathParameters']['id'],
-            source_language,
-            target_language)
+                                    source_language,
+                                    target_language)
     if item:
         response = {
             "statusCode": 200,
