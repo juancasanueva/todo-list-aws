@@ -217,8 +217,10 @@ class TestDatabaseFunctions(unittest.TestCase):
         responsePut = put_item("Learn Serverless", self.dynamodb)
         print ('Response PutItem' + str(responsePut))
         idItem = json.loads(responsePut['body'])['id']
-        response = translate_item(idItem, "auto", "es", self.dynamodb)
-        self.assertEqual(response['text'], translated_text)
+        print ('Id item:' + idItem)
+        result = translate_item(idItem, "auto", "es", self.dynamodb)
+        print ('Result Translate Item:' + str(result))
+        self.assertEqual(result['text'], translated_text)
         print ('End: test_translate_todo')
 
     def test_translate_todo_error(self):
