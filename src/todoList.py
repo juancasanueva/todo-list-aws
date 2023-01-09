@@ -146,3 +146,23 @@ def create_todo_table(dynamodb):
         raise AssertionError()
 
     return table
+
+
+def translate_item(key, source_language, target_language, dynamodb=None):
+    translate_client = boto3.client(service_name='translate',
+                                    region_name='us-east-1',
+                                    use_ssl=True)
+    item = get_item(key, dynamodb)
+    if item:
+        try:
+            translate_response = translate_client.translate_text(
+                Text=item['text'],
+                SourceLanguageCode=source_language,
+                TargetLanguageCode=target_language)
+            item['text'] = translate_response['TranslatedText']
+        except ClientError as e:
+            print(e.response['Error']['Message'])
+        else:
+            return item
+    else:
+        return

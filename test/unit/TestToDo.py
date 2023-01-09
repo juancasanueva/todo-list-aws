@@ -207,5 +207,29 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
 
+    def test_translate_todo(self):
+        print ('---------------------')
+        print ('Start: test_translate_todo')
+        from src.todoList import translate_item
+        from src.todoList import put_item
+        translated_text = "Aprenda sin servidor"
+        # Testing file functions
+        responsePut = put_item("Learn Serverless", self.dynamodb)
+        print ('Response PutItem' + str(responsePut))
+        idItem = json.loads(responsePut['body'])['id']
+        print ('Id item:' + idItem)
+        result = translate_item(idItem, "auto", "es", self.dynamodb)
+        print ('Result Translate Item:' + str(result))
+        self.assertEqual(result['text'], translated_text)
+        print ('End: test_translate_todo')
+
+    def test_translate_todo_error(self):
+        print ('---------------------')
+        print ('Start: test_translate_todo_error')
+        from src.todoList import translate_item
+        # Testing file functions
+        self.assertRaises(TypeError, translate_item("", "", "", self.dynamodb))
+        print ('End: test_translate_todo_error')
+
 if __name__ == '__main__':
     unittest.main()
