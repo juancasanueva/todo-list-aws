@@ -43,7 +43,22 @@ class TestDatabaseFunctions(unittest.TestCase):
         #self.table_local.delete()
         self.dynamodb = None
         print ('End: tearDown')
-
+    
+    def test_get_table(self):
+        print ('---------------------')
+        print ('Start: test_get_table')
+        from src.todoList import get_table
+        self.assertEqual(self.table, get_table(self.dynamodb))
+        print ('End: test_get_table')   
+        
+    def test_get_table_error(self):
+        print ('---------------------')
+        print ('Start: test_get_table_error')
+        from src.todoList import get_table
+        os.environ['ENDPOINT_OVERRIDE'] = "https://dynamodb.us-east-1.amazonaws.com"
+        self.assertRaises(Exception, get_table())
+        print ('End: test_get_table_error')          
+        
     def test_table_exists(self):
         print ('---------------------')
         print ('Start: test_table_exists')
